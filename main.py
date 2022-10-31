@@ -7,7 +7,7 @@ app = FastAPI()
 
 
 @app.get('/blog')
-def index(limit=10, published: bool = True, sort: Optional[str] = None):
+def index(limit=10, published: bool = True):
     # only get 10 published blogs
     if published:
         return {'data': f'{limit} published blogs from the db'}
@@ -21,15 +21,15 @@ def unpublished():
 
 
 @app.get('/blog/{id}')
-def show(id: int):
+def show(bid: int):
     # fetch blog with id = id
-    return {'data': id}
+    return {'data': bid}
 
 
 @app.get('/blog/{id}/comments')
-def comments(id, limit=10):
+def comments(bid, limit=10):
     # fetch comments of blog with id = id
-    return {'data': {'1', '2'}}
+    return {'data': {bid, limit}}
 
 
 class Blog(BaseModel):
