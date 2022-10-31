@@ -21,6 +21,14 @@ class User(BaseModel):
 class ShowUser(BaseModel):
     name: str
     email: str
+    blogs: List[Blog] = []
+    class Config():
+        orm_mode = True
+
+
+class ShowUser2(BaseModel):
+    name: str
+    email: str
     class Config():
         orm_mode = True
 
@@ -28,6 +36,7 @@ class ShowUser(BaseModel):
 class ShowBlog(BaseModel):
     title: str
     body: str
+    creator: ShowUser2
     class Config():
         orm_mode = True
 
