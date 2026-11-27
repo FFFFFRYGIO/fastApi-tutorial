@@ -35,7 +35,7 @@ def update(bid: int, request: schemas.Blog, db: Session):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Blog with id {bid} not found")
 
-    blog.update(request)
+    blog.update(request.model_dump())
     db.commit()
     return 'updated'
 

@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class BlogBase(BaseModel):
@@ -8,8 +8,7 @@ class BlogBase(BaseModel):
 
 
 class Blog(BlogBase):
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class User(BaseModel):
@@ -23,16 +22,14 @@ class ShowUser(BaseModel):
     email: str
     blogs: List[Blog] = []
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ShowUser2(BaseModel):
     name: str
     email: str
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ShowBlog(BaseModel):
@@ -40,8 +37,7 @@ class ShowBlog(BaseModel):
     body: str
     creator: ShowUser2
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class Login(BaseModel):

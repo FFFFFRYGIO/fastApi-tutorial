@@ -20,13 +20,13 @@ def unpublished():
     return {'data': 'all unpublished blogs'}
 
 
-@app.get('/blog/{id}')
+@app.get('/blog/{bid}')
 def show(bid: int):
     # fetch blog with id = id
     return {'data': bid}
 
 
-@app.get('/blog/{id}/comments')
+@app.get('/blog/{bid}/comments')
 def comments(bid, limit=10):
     # fetch comments of blog with id = id
     return {'data': {bid, limit}}
@@ -35,7 +35,7 @@ def comments(bid, limit=10):
 class Blog(BaseModel):
     title: str
     body: str
-    published: Optional[bool]
+    published: Optional[bool] = None
 
 
 @app.post('/blog')
